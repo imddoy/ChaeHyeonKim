@@ -1,7 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Playfair+Display:ital,wght@1,400..900&display=swap");
 * {
   margin: 0;
-  font-family: "Playfair Display", serif;
+  font-family: "Nanum Gothic Coding", monospace; /* 기본 폰트 */
+  [lang="en"] {
+    font-family: "Playfair Display", serif; /* 영어 텍스트에 적용할 폰트 */
+  }
 }
 
 body {
@@ -24,7 +28,8 @@ header {
   color: #345f53;
 }
 .shoppingContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: 200px min-content;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
@@ -33,13 +38,49 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 200px;
+  position: fixed;
+  top: 120px;
+  left: 50px;
+  width: 150px;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  h3 {
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 20px 20px 0px 0px;
+    background-color: #345f53;
+    text-align: center;
+    color: #fff;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    padding: 0;
+  }
+  a {
+    padding: 5px 0;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+      background-color: #345f53;
+      color: #fff;
+    }
+    &:last-child {
+      border-radius: 0 0 20px 20px;
+    }
+  }
 }
 .shoppingContainer main {
   display: flex;
   flex-direction: column;
   gap: 50px;
-  width: 100%;
+  min-width: 600px;
+  margin-left: 200px;
+  padding: 20px;
 }
 
 .items {
@@ -54,7 +95,6 @@ header {
     justify-content: center;
     width: 200px;
     padding: 20px;
-    border: 1px black solid;
     border-radius: 20px;
     background-color: #fff;
   }

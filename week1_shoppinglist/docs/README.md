@@ -1,6 +1,10 @@
 ## 나만의 쇼핑리스트 만들기
 🔗 [쇼핑리스트 바로가기](https://sopt-week1-shoppinglist.vercel.app/)
-<img width="1280" alt="image" src="https://github.com/NOW-SOPT-WEB/ChaeHyeonKim/assets/90364711/ba0ccdee-cdab-4f8a-b561-066e74fdc8f2">
+<div style="float: left;">
+<img width="700" alt="image" src="https://github.com/NOW-SOPT-WEB/ChaeHyeonKim/assets/90364711/ba0ccdee-cdab-4f8a-b561-066e74fdc8f2">
+<img width="210" alt="모바일" src="https://github.com/NOW-SOPT-WEB/ChaeHyeonKim/assets/90364711/5e3d67a5-dd16-47d0-bf5f-bd0886df6d83">
+</div>
+
 
 ### 🧩 기본 과제
 

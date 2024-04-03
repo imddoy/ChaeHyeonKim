@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&family=Merriweather&family=Nanum+Myeongjo&family=Tinos:ital@1&display=swap");
+
+* {
+  margin: 0;
+  font-family: "EB Garamond", serif;
+}
+
+body {
+  margin-top: 75px;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+.shoppingContainer {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+}
+.shoppingContainer nav {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shoppingContainer main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 10px 0;
+  .item {
+    width: 200px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px black solid;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+}

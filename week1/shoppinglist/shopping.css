@@ -78,9 +78,60 @@ header {
   display: flex;
   flex-direction: column;
   gap: 50px;
-  min-width: 600px;
+  min-width: 800px;
   margin-left: 200px;
   padding: 20px;
+}
+.banner {
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: calc(180 * 7px);
+  height: 150px;
+  overflow: hidden;
+  ul.boxes {
+    position: absolute;
+    display: flex;
+    width: max-content;
+    animation: adScroll 20s linear infinite;
+    li {
+      list-style: none;
+      width: 180px;
+      height: 100px;
+      border: 1px solid #ddd;
+      &.ad1 {
+        background: #eb4343;
+      }
+      &.ad2 {
+        background: #ff8d14;
+      }
+      &.ad3 {
+        background: #ebb30e;
+      }
+      &.ad4 {
+        background: #578957;
+      }
+      &.ad5 {
+        background: #3b94c9;
+      }
+      &.ad6 {
+        background: #47478f;
+      }
+      &.ad7 {
+        background: #a14fa1;
+      }
+    }
+  }
+}
+
+@keyframes adScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(calc(-180px * 7));
+  }
 }
 
 .items {

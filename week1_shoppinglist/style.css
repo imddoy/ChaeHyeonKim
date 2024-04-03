@@ -173,9 +173,10 @@ main {
     border-radius: 10px;
     width: 10rem;
   }
-  .item:hover {
+  .item:has(> .item-image:hover) {
     animation: heartbeat 1.5s ease-in-out infinite;
   }
+
   .like {
     font-size: 1.5rem;
     color: #ff9e99;
@@ -216,7 +217,7 @@ footer {
 
 @media (max-width: 1200px) {
   .item {
-    width: calc(25% - 1rem); /* 4개 아이템 표시 */
+    width: calc(25% - 1rem);
   }
 }
 

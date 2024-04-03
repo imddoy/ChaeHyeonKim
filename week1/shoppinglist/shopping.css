@@ -1,11 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Playfair+Display:ital,wght@1,400..900&display=swap");
+@font-face {
+  font-family: "UhBeeSe_hyun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeSe_hyun.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 * {
   margin: 0;
-  font-family: "Nanum Gothic Coding", monospace; /* 기본 폰트 */
-  [lang="en"] {
-    font-family: "Playfair Display", serif; /* 영어 텍스트에 적용할 폰트 */
-  }
+  font-family: "UhBeeSe_hyun", sans-serif;
 }
 html {
   scroll-padding-top: 6rem; /* 링크 이동할 때 카테고리 타이틀 위치 설정 */
@@ -31,6 +33,13 @@ header {
   font-weight: 700;
   font-style: italic;
   color: #ff9e99;
+
+  img:first-child {
+    width: 5rem;
+  }
+  img:last-child {
+    width: 2rem;
+  }
 }
 
 /* nav */
@@ -89,38 +98,43 @@ main {
   position: relative;
   display: flex;
   align-items: center;
-  width: calc(180px * 7);
-  height: 5rem;
+  width: calc(9.5rem * 7);
+  height: 8rem;
   overflow: hidden;
   ul.boxes {
     position: absolute;
     display: flex;
+    width: max-content;
+    height: max-content;
     animation: adScroll 20s linear infinite;
     li {
       list-style: none;
-      width: 180px;
-      height: 100px;
+      width: 9.5rem;
+      height: 9rem;
       border: 1px solid #ddd;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
       &.ad1 {
-        background: #eb4343;
+        background-image: url("./images/bag.jpg");
       }
       &.ad2 {
-        background: #ff8d14;
+        background-image: url("./images/mic.jpg");
       }
       &.ad3 {
-        background: #ebb30e;
+        background-image: url("./images/sticker.jpg");
       }
       &.ad4 {
-        background: #578957;
+        background-image: url("./images/mouse.jpg");
       }
       &.ad5 {
-        background: #3b94c9;
+        background-image: url("./images/passport.jpg");
       }
       &.ad6 {
-        background: #47478f;
+        background-image: url("./images/usb.jpg");
       }
       &.ad7 {
-        background: #a14fa1;
+        background-image: url("./images/doll.jpg");
       }
     }
   }
@@ -131,7 +145,7 @@ main {
     transform: translateX(0%);
   }
   100% {
-    transform: translateX(calc(-180px * 7));
+    transform: translateX(calc(-9.5rem * 7));
   }
 }
 /* 상품 */
@@ -139,19 +153,21 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  margin: 10px 0;
+  margin: 10px auto;
   .item {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 1rem;
     width: 200px;
     padding: 20px;
     border-radius: 20px;
     background-color: #fff;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
     font-size: 0.8rem;
+    text-align: center;
+    word-wrap: break-word;
     cursor: pointer;
   }
   .item-image {
@@ -162,15 +178,17 @@ main {
     animation: heartbeat 1.5s ease-in-out infinite;
   }
   .like {
-    display: block;
-    width: 31px;
-    height: 28px;
-    background-image: url("./images/like.svg"); /* 기본 상태 */
-    background-size: cover;
+    font-size: 1.5rem;
+    color: #ff9e99;
   }
 
-  .like:hover {
-    background-image: url("./images/like-hover.svg"); /* 호버 상태 */
+  .like::before {
+    content: "♡";
+    visibility: visible;
+  }
+
+  .like:hover::before {
+    content: "♥";
   }
 }
 @keyframes heartbeat {

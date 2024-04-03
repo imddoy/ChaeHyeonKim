@@ -7,66 +7,65 @@
     font-family: "Playfair Display", serif; /* 영어 텍스트에 적용할 폰트 */
   }
 }
-
+html {
+  scroll-padding-top: 6rem; /* 링크 이동할 때 카테고리 타이틀 위치 설정 */
+  scroll-behavior: smooth;
+}
 body {
-  margin-top: 75px;
-  background: url(https://grainy-gradients.vercel.app/noise.svg);
+  margin-top: 5rem;
+  background-color: #fff;
 }
 
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  padding: 20px 10px;
-  backdrop-filter: blur(30px);
+  height: 5rem;
+  padding: 0 3rem;
+  backdrop-filter: blur(50px);
   z-index: 100;
   font-weight: 700;
   font-style: italic;
-  color: #345f53;
+  color: #ff9e99;
 }
-.shoppingContainer {
-  display: grid;
-  grid-template-columns: 200px min-content;
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-}
-.shoppingContainer nav {
+
+/* nav */
+.navContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: fixed;
-  top: 120px;
-  left: 50px;
-  width: 150px;
+  top: 8rem;
+  left: 3rem;
+  width: 10rem;
   border-radius: 20px;
   background-color: #fff;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
   h3 {
     width: 100%;
-    padding: 10px 0;
+    padding: 0.5rem 0;
     border-radius: 20px 20px 0px 0px;
-    background-color: #345f53;
+    background-color: #ff9e99;
     text-align: center;
     color: #fff;
   }
   ul {
     display: flex;
     flex-direction: column;
-    gap: 5px;
     width: 100%;
     padding: 0;
   }
   a {
-    padding: 5px 0;
+    padding: 0.5rem 0;
     text-align: center;
     text-decoration: none;
     color: inherit;
     &:hover {
-      background-color: #345f53;
+      background-color: #ff9e99;
       color: #fff;
     }
     &:last-child {
@@ -74,26 +73,28 @@ header {
     }
   }
 }
-.shoppingContainer main {
+
+main {
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  min-width: 800px;
-  margin-left: 200px;
-  padding: 20px;
+  gap: 3rem;
+  width: calc(100vw - 13rem); /* 전체 뷰포트 너비에서 nav 너비만큼 제외 */
+  margin: 2rem auto;
+  padding-left: 13rem;
+  box-sizing: border-box;
+  overflow: hidden;
 }
+/* 광고 */
 .banner {
-  margin: 0 auto;
   position: relative;
   display: flex;
   align-items: center;
-  width: calc(180 * 7px);
-  height: 150px;
+  width: calc(180px * 7);
+  height: 5rem;
   overflow: hidden;
   ul.boxes {
     position: absolute;
     display: flex;
-    width: max-content;
     animation: adScroll 20s linear infinite;
     li {
       list-style: none;
@@ -133,7 +134,7 @@ header {
     transform: translateX(calc(-180px * 7));
   }
 }
-
+/* 상품 */
 .items {
   display: flex;
   flex-wrap: wrap;
@@ -144,14 +145,51 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 5px;
     width: 200px;
     padding: 20px;
     border-radius: 20px;
     background-color: #fff;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+  .item-image {
+    border-radius: 10px;
+    width: 180px;
+  }
+  .item:hover {
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+  .like {
+    display: block;
+    width: 31px;
+    height: 28px;
+    background-image: url("./images/like.svg"); /* 기본 상태 */
+    background-size: cover;
+  }
+
+  .like:hover {
+    background-image: url("./images/like-hover.svg"); /* 호버 상태 */
+  }
+}
+@keyframes heartbeat {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(0.95, 0.95, 1);
   }
 }
 
 footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  text-align: center;
+  height: 100px;
+  background-color: #ff9e99;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
 }

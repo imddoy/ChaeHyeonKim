@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>웨비 투두리스트</title>
+  </head>
+  <body>
+    <section class="todo">
+      <h2 class="todo__title">🌱웨비 투두리스트🌱</h2>
+      <article class="todo__input-wrapper">
+        <input type="text" class="todo__input" />
+        <button type="submit" class="todo__add-button"></button>
+      </article>
+    </section>
+    <main class="todo-list">
+      <article class="todo-list__category">
+        <h3 class="todo-list__title">Not started</h3>
+        <ul class="todo-list__items">
+          <li class="todo-item">
+            <span class="todo-item__text">할 일 1</span>
+            <button class="todo-item__delete-button"></button>
+          </li>
+          <!-- ... Other todo-item blocks ... -->
+        </ul>
+      </article>
+      <article class="todo-list__category">
+        <h3 class="todo-list__title">Done</h3>
+        <ul class="todo-list__items">
+          <li class="todo-item todo-item--completed">
+            <span class="todo-item__text">완료된 할 일 1</span>
+            <button class="todo-item__delete-button"></button>
+          </li>
+          <!-- ... Other completed todo-item blocks ... -->
+        </ul>
+      </article>
+    </main>
+  </body>
+</html>

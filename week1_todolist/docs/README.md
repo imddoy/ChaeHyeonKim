@@ -1,5 +1,8 @@
 ### 🧩 기본 과제2
 
+🔗 [투두리스트 바로가기](https://sopt-week1-todolist-roandhlfw-imddoys-projects.vercel.app/)
+![alt text](image.png)
+
 1. **간단 구현**
 
    - [x] todoList의 제목 생성

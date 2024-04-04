@@ -7,7 +7,7 @@
      - [x] 버튼과 input은 가로 정렬
 
 2. **todoList**
-   - [ ] todoList 말줄임표 처리
+   - [x] todoList 말줄임표 처리
    - [x] 삭제버튼 오른쪽 정렬
 3. **CSS**
    - [ ] 멈추지 않는 animation 적용

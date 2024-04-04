@@ -67,23 +67,28 @@
 .todo-list {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   flex-wrap: wrap;
 }
 
 .todo-list__category {
-  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .todo-list__title {
-  text-align: center;
+  margin: 2rem;
+  color: rgb(54, 148, 0);
 }
 
 .todo-list__items {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
+  width: 30rem;
 }
 
 .todo-item {
@@ -91,16 +96,24 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  width: 100%;
+  width: calc(100% - 4px);
   height: 5rem;
   padding: 1rem 3rem;
   box-sizing: border-box;
   background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 4px 0 rgba(165, 255, 113, 0.867);
   list-style: none;
 }
 
 .todo-item__text {
   width: calc(100% - 3.5rem);
+  background-color: #fff;
+
+  /*말 줄임표*/
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .todo-item__delete-button {

@@ -33,15 +33,13 @@ header {
   font-weight: 700;
   font-style: italic;
   color: #ff9e99;
-
-  img:first-child {
-    width: 5rem;
-  }
-  img:last-child {
-    width: 2rem;
-  }
 }
-
+header img:first-child {
+  width: 5rem;
+}
+header img:last-child {
+  width: 2rem;
+}
 /* nav */
 .navContainer {
   display: flex;
@@ -54,33 +52,33 @@ header {
   border-radius: 20px;
   background-color: #fff;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
-  h3 {
-    width: 100%;
-    padding: 0.8rem 0;
-    border-radius: 20px 20px 0px 0px;
-    background-color: #ff9e99;
-    text-align: center;
-    color: #fff;
-  }
-  ul {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 0;
-  }
-  a {
-    padding: 0.5rem 0;
-    text-align: center;
-    text-decoration: none;
-    color: inherit;
-    &:hover {
-      background-color: #ff9e99;
-      color: #fff;
-    }
-    &:last-child {
-      border-radius: 0 0 20px 20px;
-    }
-  }
+}
+.navContainer h3 {
+  width: 100%;
+  padding: 0.8rem 0;
+  border-radius: 20px 20px 0px 0px;
+  background-color: #ff9e99;
+  text-align: center;
+  color: #fff;
+}
+.navContainer ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+}
+.navContainer a {
+  padding: 0.5rem 0;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+.navContainer a:hover {
+  background-color: #ff9e99;
+  color: #fff;
+}
+.navContainer a:last-child {
+  border-radius: 0 0 20px 20px;
 }
 
 main {
@@ -101,45 +99,44 @@ main {
   width: calc(9.5rem * 7);
   height: 8rem;
   overflow: hidden;
-  ul.boxes {
-    position: absolute;
-    display: flex;
-    width: max-content;
-    height: max-content;
-    animation: adScroll 20s linear infinite;
-    li {
-      list-style: none;
-      width: 9.5rem;
-      height: 9rem;
-      border: 1px solid #ddd;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center center;
-      &.ad1 {
-        background-image: url("./images/bag.jpg");
-      }
-      &.ad2 {
-        background-image: url("./images/mic.jpg");
-      }
-      &.ad3 {
-        background-image: url("./images/sticker.jpg");
-      }
-      &.ad4 {
-        background-image: url("./images/mouse.jpg");
-      }
-      &.ad5 {
-        background-image: url("./images/passport.jpg");
-      }
-      &.ad6 {
-        background-image: url("./images/usb.jpg");
-      }
-      &.ad7 {
-        background-image: url("./images/doll.jpg");
-      }
-    }
-  }
 }
-
+ul.boxes {
+  position: absolute;
+  display: flex;
+  width: max-content;
+  height: max-content;
+  animation: adScroll 20s linear infinite;
+}
+ul.boxes li {
+  list-style: none;
+  width: 9.5rem;
+  height: 9rem;
+  border: 1px solid #ddd;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+ul.boxes li.ad1 {
+  background-image: url("./images/bag.jpg");
+}
+ul.boxes li.ad2 {
+  background-image: url("./images/mic.jpg");
+}
+ul.boxes li.ad3 {
+  background-image: url("./images/sticker.jpg");
+}
+ul.boxes li.ad4 {
+  background-image: url("./images/mouse.jpg");
+}
+ul.boxes li.ad5 {
+  background-image: url("./images/passport.jpg");
+}
+ul.boxes li.ad6 {
+  background-image: url("./images/usb.jpg");
+}
+ul.boxes li.ad7 {
+  background-image: url("./images/doll.jpg");
+}
 @keyframes adScroll {
   0% {
     transform: translateX(0%);
@@ -154,42 +151,42 @@ main {
   flex-wrap: wrap;
   gap: 1rem;
   margin: 2rem auto;
-  .item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 12rem;
-    padding: 1rem;
-    border-radius: 20px;
-    background-color: #fff;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
-    font-size: 0.8rem;
-    text-align: center;
-    word-wrap: break-word;
-    cursor: pointer;
-  }
-  .item-image {
-    border-radius: 10px;
-    width: 10rem;
-  }
-  .item:has(> .item-image:hover) {
-    animation: heartbeat 1.5s ease-in-out infinite;
-  }
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 12rem;
+  padding: 1rem;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+  font-size: 0.8rem;
+  text-align: center;
+  word-wrap: break-word;
+  cursor: pointer;
+}
+.item-image {
+  border-radius: 10px;
+  width: 10rem;
+}
+.item:has(> .item-image:hover) {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
 
-  .like {
-    font-size: 1.5rem;
-    color: #ff9e99;
-  }
+.like {
+  font-size: 1.5rem;
+  color: #ff9e99;
+}
 
-  .like::before {
-    content: "♡";
-    visibility: visible;
-  }
+.like::before {
+  content: "♡";
+  visibility: visible;
+}
 
-  .like:hover::before {
-    content: "♥";
-  }
+.like:hover::before {
+  content: "♥";
 }
 
 @keyframes heartbeat {

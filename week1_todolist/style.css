@@ -1,0 +1,146 @@
+@font-face {
+  font-family: "YClover-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/YClover-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  font-family: "YClover-bold", sans-serif;
+  background-color: black;
+}
+.todo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo__title {
+  margin: 5vh 0;
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(
+    307deg,
+    rgb(240, 255, 203),
+    rgba(165, 255, 113, 0.867),
+    #2bf,
+    rgb(85, 153, 255)
+  );
+  font-size: 3rem;
+}
+
+.todo__input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.todo__input {
+  width: 20vw;
+  height: 2.5rem;
+  padding: 0 1rem;
+  background-color: #fff;
+  border: 3px solid rgba(165, 255, 113, 0.867);
+  border-radius: 10px;
+}
+.todo__input:focus {
+  outline: none;
+}
+/* 버튼에 공통 스타일 적용 */
+.todo__button {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 3px solid rgba(165, 255, 113, 0.867);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.todo__button--add {
+  background-image: url(./images/plus.svg);
+}
+.todo__button--delete {
+  background-image: url(./images/minus.svg);
+}
+
+.todo-list {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+.todo-list__category {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list__title {
+  margin: 2rem;
+  color: rgba(165, 255, 113, 0.867);
+}
+
+.todo-list__items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 30rem;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: calc(100% - 10px);
+  height: 5rem;
+  padding: 1rem 3rem;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(165, 255, 113, 0.867);
+  list-style: none;
+  animation: jump 2s ease-in-out infinite;
+}
+@keyframes jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-0.3rem);
+  }
+  75% {
+    transform: translateY(0.3rem);
+  }
+}
+
+.todo-item--completed {
+  background: radial-gradient(
+    rgba(200, 250, 250, 0.7),
+    rgba(180, 240, 240, 0.7),
+    rgba(160, 230, 230, 0.7)
+  );
+}
+.todo-item--completed .todo-item__text {
+  background: none;
+}
+
+.todo-item__text {
+  width: calc(100% - 3.5rem);
+  background-color: #fff;
+  /*말 줄임표*/
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

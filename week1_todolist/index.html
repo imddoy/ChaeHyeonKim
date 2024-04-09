@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>🌱웨비 투두리스트</title>
+  </head>
+  <body>
+    <section class="todo">
+      <h2 class="todo__title">🌱웨비 투두리스트🌱</h2>
+      <article class="todo__input-wrapper">
+        <input type="text" class="todo__input" />
+        <button type="submit" class="todo__button todo__button--add"></button>
+      </article>
+    </section>
+    <main class="todo-list">
+      <article class="todo-list__category">
+        <h3 class="todo-list__title">Not started</h3>
+        <ul class="todo-list__items">
+          <li class="todo-item">
+            <span class="todo-item__text">2차 세미나 뒷풀이🍻</span>
+            <button class="todo__button todo__button--delete"></button>
+          </li>
+          <li class="todo-item">
+            <span class="todo-item__text"
+              >한강으로 ⚡번개⚡가서 벚꽃구경하기</span
+            >
+            <button class="todo__button todo__button--delete"></button>
+          </li>
+        </ul>
+      </article>
+      <article class="todo-list__category">
+        <h3 class="todo-list__title">Done</h3>
+        <ul class="todo-list__items">
+          <li class="todo-item todo-item--completed">
+            <span class="todo-item__text"
+              >⚡번개 ⚡ 모각공 가서 웹파트 1차 세미나 과제하기</span
+            >
+            <button class="todo__button todo__button--delete"></button>
+          </li>
+          <li class="todo-item todo-item--completed">
+            <span class="todo-item__text">웨비들과 신나는 워크샵🥳🎉</span>
+            <button class="todo__button todo__button--delete"></button>
+          </li>
+          <li class="todo-item todo-item--completed">
+            <span class="todo-item__text">🍀NOW SOPT 오티</span>
+            <button class="todo__button todo__button--delete"></button>
+          </li>
+        </ul>
+      </article>
+    </main>
+  </body>
+</html>

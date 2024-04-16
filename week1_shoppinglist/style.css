@@ -53,7 +53,7 @@ header img:last-child {
   background-color: #fff;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
 }
-.navContainer h3 {
+.navContainer p {
   width: 100%;
   padding: 0.8rem 0;
   border-radius: 20px 20px 0px 0px;
@@ -67,17 +67,21 @@ header img:last-child {
   width: 100%;
   padding: 0;
 }
-.navContainer a {
+.navContainer li {
+  display: flex;
+  justify-content: center;
+  width: 100%;
   padding: 0.5rem 0;
-  text-align: center;
+}
+.navContainer a {
   text-decoration: none;
   color: inherit;
 }
-.navContainer a:hover {
+.navContainer li:hover {
   background-color: #ff9e99;
   color: #fff;
 }
-.navContainer a:last-child {
+.navContainer li:last-child {
   border-radius: 0 0 20px 20px;
 }
 

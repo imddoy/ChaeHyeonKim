@@ -21,7 +21,7 @@ customElements.define("shop-header", HeaderComponent); // html 태그 정의 및
 
 // home 이동
 function goHome() {
-  https: location.href = "index.html";
+  location.href = "index.html";
 }
 
 /* index */
@@ -29,6 +29,7 @@ function goHome() {
 // 상품 리스트
 const SHOPPING_LIST = [
   {
+    id: 1,
     category: "stationery",
     image: "./images/note.jpg",
     name: "잔망루피 페이스 스프링 노트",
@@ -36,6 +37,7 @@ const SHOPPING_LIST = [
     liked: false,
   },
   {
+    id: 2,
     category: "stationery",
     image: "./images/bag.jpg",
     name: "잔망루피 쇼핑백 (2종/택1)",
@@ -43,6 +45,7 @@ const SHOPPING_LIST = [
     liked: false,
   },
   {
+    id: 3,
     category: "stationery",
     image: "./images/sticker.jpg",
     name: "잔망루피 스티커",
@@ -50,6 +53,7 @@ const SHOPPING_LIST = [
     liked: false,
   },
   {
+    id: 4,
     category: "fashion",
     image: "./images/doll.jpg",
     name: "잔망루피 파자마 봉제 인형",
@@ -57,6 +61,7 @@ const SHOPPING_LIST = [
     liked: false,
   },
   {
+    id: 5,
     category: "fashion",
     image: "./images/passport.jpg",
     name: "잔망루피 여권 케이스",
@@ -64,6 +69,7 @@ const SHOPPING_LIST = [
     liked: false,
   },
   {
+    id: 6,
     category: "fashion",
     image: "./images/flower.jpg",
     name: "잔망루피 꽃다발 봉제 인형",
@@ -71,6 +77,7 @@ const SHOPPING_LIST = [
     liked: false,
   },
   {
+    id: 7,
     category: "digital",
     image: "./images/mouse.jpg",
     name: "잔망루피 마우스패드",
@@ -78,6 +85,7 @@ const SHOPPING_LIST = [
     liked: false,
   },
   {
+    id: 8,
     category: "digital",
     image: "./images/usb.jpg",
     name: "로이체 잔망루피 5in1 멀티 USB 허브",
@@ -85,6 +93,7 @@ const SHOPPING_LIST = [
     liked: false,
   },
   {
+    id: 9,
     category: "digital",
     image: "./images/mic.jpg",
     name: "로이체 잔망루피 블루투스 마이크 스피커",
@@ -116,6 +125,9 @@ function renderItems(filterCategory = "all") {
     // 좋아요
     const likeDiv = document.createElement("div");
     likeDiv.className = "like";
+    likeDiv.onclick = function () {
+      addCart(item);
+    };
 
     // 상품명
     const nameP = document.createElement("p");
@@ -134,4 +146,16 @@ function renderItems(filterCategory = "all") {
     article.appendChild(priceP);
     itemsContainer.appendChild(article);
   });
+}
+
+//장바구니 목록 추가
+var CART_LIST = [];
+function addCart(item) {
+  alert(`${item.name}을(를) 장바구니에 추가하시겠습니까?`);
+  CART_LIST.push(item);
+  console.log(CART_LIST);
+  var answer = confirm("장바구니로 이동하시겠습니까?");
+  if (answer == true) {
+    location.href = "cart.html";
+  }
 }

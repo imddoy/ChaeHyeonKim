@@ -14,11 +14,42 @@
       content="https://sopt-week1-shoppinglist.vercel.app/images/logo.png"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="cart.css" />
     <title>잔망루피 장바구니</title>
   </head>
-  <body>
+  <body onload="renderCartItems()">
     <!-- header -->
     <shop-header></shop-header>
+    <!-- 장바구니 -->
+    <table class="cart">
+      <thead>
+        <tr>
+          <th><input type="checkbox" /></th>
+          <th colspan="2">상품정보</th>
+          <th>상품 금액</th>
+          <th>카테고리</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody class="cartlist">
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td><img src="" alt="상품이미지" /></td>
+          <td>클린코드</td>
+          <td>30,000원</td>
+          <td>books</td>
+          <td><div class="delete">삭제</div></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td><img src="" alt="상품이미지" /></td>
+          <td>클린코드</td>
+          <td>30,000원</td>
+          <td>books</td>
+          <td><div class="delete">삭제</div></td>
+        </tr>
+      </tbody>
+    </table>
   </body>
   <script src="index.js"></script>
 </html>

@@ -137,7 +137,9 @@ function renderItems(filterCategory = "all") {
     // 가격
     const priceP = document.createElement("p");
     priceP.className = "price";
-    priceP.textContent = item.price;
+    priceP.textContent =
+      item.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +
+      "원"; // 천단위 표시
 
     // 요소 추가
     article.appendChild(img);
@@ -149,13 +151,99 @@ function renderItems(filterCategory = "all") {
 }
 
 //장바구니 목록 추가
-var CART_LIST = [];
 function addCart(item) {
-  alert(`${item.name}을(를) 장바구니에 추가하시겠습니까?`);
-  CART_LIST.push(item);
-  console.log(CART_LIST);
+  let cartList = JSON.parse(localStorage.getItem("cartList")) || [];
+  if (!Array.isArray(cartList)) {
+    cartList = []; // cartList가 배열이 아닌 경우, 빈 배열로 초기화
+  }
+  cartList.push(item); // 새 상품을 추가한다
+  localStorage.setItem("cartList", JSON.stringify(cartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
+  console.log(cartList);
+  alert(`${item.name}을(를) 장바구니에 담았습니다.`);
   var answer = confirm("장바구니로 이동하시겠습니까?");
   if (answer == true) {
     location.href = "cart.html";
   }
+}
+
+/* cart.html */
+// 장바구니 목록 렌더링
+function renderCartItems() {
+  const cartItemsContainer = document.querySelector(".cartlist"); // 상품 리스트를 렌더링할 class 가져오기
+  cartItemsContainer.innerHTML = ""; // 기존 상품 목록 비우기
+
+  let cartList = JSON.parse(localStorage.getItem("cartList") || "[]");
+  console.log(cartList);
+  console.log(typeof cartList);
+  cartList.forEach((item) => {
+    const tr = document.createElement("tr");
+
+    // 체크박스
+    const checktd = document.createElement("td");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checktd.appendChild(checkbox);
+
+    // 이미지
+    const imgtd = document.createElement("td");
+    const img = document.createElement("img");
+    img.src = item.image;
+    img.alt = "상품 이미지";
+    img.className = "item-image";
+    imgtd.appendChild(img);
+
+    // 상품명
+    const nametd = document.createElement("td");
+    nametd.textContent = item.name;
+
+    // 가격
+    const pricetd = document.createElement("td");
+    pricetd.textContent =
+      item.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +
+      "원"; // 천단위 표시
+
+    // 카테고리
+    const categorytd = document.createElement("td");
+    switch (item.category) {
+      case "stationery":
+        categorytd.textContent = "디자인 문구";
+        break;
+      case "fashion":
+        categorytd.textContent = "패션 잡화";
+        break;
+      case "digital":
+        categorytd.textContent = "디지털";
+        break;
+      default:
+        categorytd.textContent = "기타";
+        break;
+    }
+
+    // 삭제 버튼
+    const deletetd = document.createElement("td");
+    const deleteDiv = document.createElement("div");
+    deleteDiv.className = "delete";
+    deleteDiv.textContent = "삭제";
+    deleteDiv.onclick = function () {
+      removeCartItem(item.id);
+    };
+    deletetd.appendChild(deleteDiv);
+
+    // 요소 추가
+    tr.appendChild(checktd);
+    tr.appendChild(imgtd);
+    tr.appendChild(nametd);
+    tr.appendChild(pricetd);
+    tr.appendChild(categorytd);
+    tr.appendChild(deletetd);
+    cartItemsContainer.appendChild(tr);
+  });
+}
+
+// 장바구니 삭제
+function removeCartItem(itemId) {
+  let cartList = JSON.parse(localStorage.getItem("cartList")) || [];
+  cartList = cartList.filter((item) => item.id !== itemId);
+  localStorage.setItem("cartList", JSON.stringify(cartList));
+  renderCartItems(); // 목록 다시 렌더링
 }

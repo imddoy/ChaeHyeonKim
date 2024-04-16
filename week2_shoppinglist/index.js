@@ -4,3 +4,8 @@ fetch("header.html")
   .then((data) => {
     document.getElementById("header").innerHTML = data;
   });
+
+//home 이동
+function goHome() {
+  https: location.href = "index.html";
+}

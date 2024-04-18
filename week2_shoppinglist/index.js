@@ -1,4 +1,5 @@
 /* header */
+
 // 웹 컴포넌트로 header 삽입
 class HeaderComponent extends HTMLElement {
   connectedCallback() {
@@ -167,6 +168,7 @@ function addCart(item) {
 }
 
 /* cart.html */
+
 // 장바구니 목록 렌더링
 function renderCartItems() {
   const cartItemsContainer = document.querySelector(".cartlist"); // 상품 리스트를 렌더링할 class 가져오기
@@ -182,6 +184,10 @@ function renderCartItems() {
     const checktd = document.createElement("td");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.name = "item";
+    checkbox.onclick = function () {
+      onclick = checkSelectAll(this);
+    };
     checktd.appendChild(checkbox);
 
     // 이미지
@@ -221,13 +227,13 @@ function renderCartItems() {
 
     // 삭제 버튼
     const deletetd = document.createElement("td");
-    const deleteDiv = document.createElement("div");
-    deleteDiv.className = "delete";
-    deleteDiv.textContent = "삭제";
-    deleteDiv.onclick = function () {
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete";
+    deleteBtn.textContent = "삭제";
+    deleteBtn.onclick = function () {
       removeCartItem(item.id);
     };
-    deletetd.appendChild(deleteDiv);
+    deletetd.appendChild(deleteBtn);
 
     // 요소 추가
     tr.appendChild(checktd);
@@ -246,4 +252,38 @@ function removeCartItem(itemId) {
   cartList = cartList.filter((item) => item.id !== itemId);
   localStorage.setItem("cartList", JSON.stringify(cartList));
   renderCartItems(); // 목록 다시 렌더링
+}
+
+// 장바구니 체크 구현
+// 전체 선택 상태 업데이트 (아이템 체크 해제하면 전체 선택 취소)
+function checkSelectAll(checkbox) {
+  const selectall = document.querySelector('input[name="selectall"]');
+
+  if (checkbox.checked === false) {
+    selectall.checked = false;
+  }
+}
+
+// 전체 선택 + 해제
+function selectAll(selectAll) {
+  const checkboxes = document.getElementsByName("item");
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = selectAll.checked;
+  });
+}
+
+/* modal */
+const modal = document.querySelector("dialog");
+// 모달 열기 버튼
+function goOpen() {
+  modal.showModal();
+}
+// 모달 닫기 버튼
+modal.addEventListener("click", (e) => {
+  if (e.target === e.currentTarget) modal.close();
+});
+// 구매 확정
+function goConfirm() {
+  alert("구매가 성공적으로 완료되었습니다.");
 }

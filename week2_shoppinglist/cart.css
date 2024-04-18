@@ -5,7 +5,7 @@
   text-align: center;
   border-collapse: collapse;
   table-layout: fixed;
-  border: 3px solid #964800;
+  border: 3px solid #e0e0e0;
 }
 .cart thead {
   height: 3rem;
@@ -16,19 +16,58 @@ thead th:nth-child(1) {
 }
 .cart td {
   height: 7rem;
-  border-bottom: 2px solid #964800;
+  border-bottom: 2px solid #e0e0e0;
 }
 .cart img {
   width: 5rem;
 }
-.cart .delete {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+button {
   width: 5rem;
   height: 3rem;
-  margin: 0 auto;
-  background-color: #ff9e99;
+  background-color: #ffc0cb;
+  border: none;
   border-radius: 10px;
   cursor: pointer;
+}
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.buttonContainer button:last-child {
+  background-color: #e0e0e0;
+}
+
+/* modal */
+dialog {
+  /*모달창 가운데 배치*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50rem;
+  padding: 0 1rem 1rem 0;
+  border: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+.dialogContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.close {
+  width: 100%;
+  border-bottom: 1px solid #aaa;
+}
+.close button {
+  background: none;
+  font-weight: 800;
+  float: right;
 }

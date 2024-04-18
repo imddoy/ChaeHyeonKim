@@ -24,32 +24,34 @@
     <table class="cart">
       <thead>
         <tr>
-          <th><input type="checkbox" /></th>
+          <th>
+            <input type="checkbox" name="selectall" onclick="selectAll(this)" />
+          </th>
           <th colspan="2">상품정보</th>
           <th>상품 금액</th>
           <th>카테고리</th>
           <th>비고</th>
         </tr>
       </thead>
-      <tbody class="cartlist">
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td><img src="" alt="상품이미지" /></td>
-          <td>클린코드</td>
-          <td>30,000원</td>
-          <td>books</td>
-          <td><div class="delete">삭제</div></td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td><img src="" alt="상품이미지" /></td>
-          <td>클린코드</td>
-          <td>30,000원</td>
-          <td>books</td>
-          <td><div class="delete">삭제</div></td>
-        </tr>
-      </tbody>
+      <tbody class="cartlist"></tbody>
     </table>
+    <!-- 버튼 -->
+    <menu class="buttonContainer">
+      <button type="button" onclick="goOpen()">구매하기</button>
+      <button type="button" onclick="goHome()">홈으로</button>
+    </menu>
+    <!-- modal -->
+    <dialog>
+      <div class="dialogContainer">
+        <form class="close" method="dialog">
+          <button>X</button>
+        </form>
+        <h3>다음 상품을 구매하시겠습니까?</h3>
+        <form method="dialog">
+          <button onclick="goConfirm()">구매하기</button>
+        </form>
+      </div>
+    </dialog>
   </body>
   <script src="index.js"></script>
 </html>

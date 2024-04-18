@@ -5,16 +5,24 @@ class HeaderComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
     <header>
-    <img
-      src="./images/logo.png"
-      alt="쇼핑몰 로고"
-      width="36rem"
-      onclick="goHome()"
-    />
-    <h1 lang="en">SHOPPING LIST</h1>
-    <img src="./images/menu.svg" alt="햄버거" />
-  </header>
-  
+      <img
+        src="./images/logo.png"
+        alt="쇼핑몰 로고"
+        width="36rem"
+        onclick="goHome()"
+      />
+      <h1 lang="en">SHOPPING LIST</h1>
+      <img src="./images/menu.svg" alt="햄버거" class="menuBtn" onclick="openNav()" />
+    </header>
+    <nav class="sidebar">
+      <div class="menuBtn" onclick="closeNav()">x
+      </div>
+      <ul>
+        <li>관심 상품 목록</li>
+        <li>관리자 페이지</li>
+        <li><a href="cart.html">장바구니</a></li>
+      </ul>
+    </nav>
       `;
   }
 }
@@ -23,6 +31,15 @@ customElements.define("shop-header", HeaderComponent); // html 태그 정의 및
 // home 이동
 function goHome() {
   location.href = "index.html";
+}
+const sidebar = document.querySelector(".sidebar");
+// 사이드바 오픈
+function openNav() {
+  sidebar.style.transform = "translateX(0)";
+}
+// 사이드바 닫기
+function closeNav() {
+  sidebar.style.transform = "translateX(100%)";
 }
 
 /* index */
@@ -116,6 +133,9 @@ function renderItems(filterCategory = "all") {
   filteredItems.forEach((item) => {
     const article = document.createElement("article"); // 각 상품에 대한 article 생성
     article.className = "item";
+    article.onclick = function () {
+      addCart(item);
+    };
 
     // 이미지
     const img = document.createElement("img");
@@ -126,9 +146,6 @@ function renderItems(filterCategory = "all") {
     // 좋아요
     const likeDiv = document.createElement("div");
     likeDiv.className = "like";
-    likeDiv.onclick = function () {
-      addCart(item);
-    };
 
     // 상품명
     const nameP = document.createElement("p");
@@ -298,7 +315,7 @@ function addBuyCart(item) {
   checkboxes.forEach((checkbox) => {
     if (checkbox.checked) {
       hasCheckedItems = true;
-      const tr = checkbox.closest("tr"); // 체크된 tr
+      const tr = checkbox.closest("tr"); // 체크된 tr 가져오기
       const item = {
         id: tr.dataset.id,
         name: tr.dataset.name,

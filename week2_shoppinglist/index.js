@@ -157,9 +157,8 @@ function addCart(item) {
   if (!Array.isArray(cartList)) {
     cartList = []; // cartList가 배열이 아닌 경우, 빈 배열로 초기화
   }
-  cartList.push(item); // 새 상품을 추가한다
+  cartList.push(item); // 새 상품 추가
   localStorage.setItem("cartList", JSON.stringify(cartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
-  console.log(cartList);
   alert(`${item.name}을(를) 장바구니에 담았습니다.`);
   var answer = confirm("장바구니로 이동하시겠습니까?");
   if (answer == true) {
@@ -175,10 +174,14 @@ function renderCartItems() {
   cartItemsContainer.innerHTML = ""; // 기존 상품 목록 비우기
 
   let cartList = JSON.parse(localStorage.getItem("cartList") || "[]");
-  console.log(cartList);
-  console.log(typeof cartList);
   cartList.forEach((item) => {
     const tr = document.createElement("tr");
+    // 데이터셋에 아이템 속성을 개별적으로 추가
+    tr.dataset.id = item.id;
+    tr.dataset.name = item.name;
+    tr.dataset.image = item.image;
+    tr.dataset.price = item.price;
+    tr.dataset.category = item.category;
 
     // 체크박스
     const checktd = document.createElement("td");
@@ -255,6 +258,8 @@ function removeCartItem(itemId) {
 }
 
 // 장바구니 체크 구현
+const checkboxes = document.getElementsByName("item");
+
 // 전체 선택 상태 업데이트 (아이템 체크 해제하면 전체 선택 취소)
 function checkSelectAll(checkbox) {
   const selectall = document.querySelector('input[name="selectall"]');
@@ -266,18 +271,73 @@ function checkSelectAll(checkbox) {
 
 // 전체 선택 + 해제
 function selectAll(selectAll) {
-  const checkboxes = document.getElementsByName("item");
-
   checkboxes.forEach((checkbox) => {
     checkbox.checked = selectAll.checked;
   });
 }
 
 /* modal */
+
 const modal = document.querySelector("dialog");
+let buyList = []; // buyList 빈 배열로 초기화
+
 // 모달 열기 버튼
 function goOpen() {
+  buyList = []; // buyList 빈 배열로 초기화
+  addBuyCart();
+  renderBuyItems();
   modal.showModal();
+}
+// 구매 목록에 아이템 추가
+function addBuyCart(item) {
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      const tr = checkbox.closest("tr"); // 가장 가까운 tr 요소 찾기
+      const item = {
+        id: tr.dataset.id,
+        name: tr.dataset.name,
+        image: tr.dataset.image,
+        price: tr.dataset.price,
+        category: tr.dataset.category,
+      };
+      buyList.push(item);
+    }
+  });
+}
+//구매목록 렌더링
+function renderBuyItems() {
+  const itemsContainer = document.querySelector(".buylist"); // 상품 리스트를 렌더링할 class 가져오기
+  itemsContainer.innerHTML = ""; // 기존 상품 목록 비우기
+
+  // 상품 목록 추가
+  buyList.forEach((item) => {
+    const article = document.createElement("article"); // 각 상품에 대한 article 생성
+    article.className = "item";
+
+    // 이미지
+    const img = document.createElement("img");
+    img.src = item.image;
+    img.alt = "상품 이미지";
+    img.className = "item-image";
+
+    // 상품명
+    const nameP = document.createElement("p");
+    nameP.className = "name";
+    nameP.textContent = item.name;
+
+    // 가격
+    const priceP = document.createElement("p");
+    priceP.className = "price";
+    priceP.textContent =
+      item.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +
+      "원"; // 천단위 표시
+
+    // 요소 추가
+    article.appendChild(img);
+    article.appendChild(nameP);
+    article.appendChild(priceP);
+    itemsContainer.appendChild(article);
+  });
 }
 // 모달 닫기 버튼
 modal.addEventListener("click", (e) => {
@@ -285,5 +345,10 @@ modal.addEventListener("click", (e) => {
 });
 // 구매 확정
 function goConfirm() {
+  let cartList = JSON.parse(localStorage.getItem("cartList") || "[]");
+  const buyIds = buyList.map((buy) => Number(buy.id)); // 구매 목록의 id 배열 생성
+  cartList = cartList.filter((cart) => !buyIds.includes(cart.id)); // 구매 목록에 없는 상품들만 남김
+  localStorage.setItem("cartList", JSON.stringify(cartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
   alert("구매가 성공적으로 완료되었습니다.");
+  location.href = location.href; // 페이지 새로고침
 }

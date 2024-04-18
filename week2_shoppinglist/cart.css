@@ -1,18 +1,44 @@
 .cart {
   width: 70vw;
-  max-height: 40rem;
-  margin: 10rem auto;
+  margin: 7rem auto 3rem;
   text-align: center;
   border-collapse: collapse;
-  table-layout: fixed;
-  border: 3px solid #e0e0e0;
 }
 .cart thead {
   height: 3rem;
   background-color: #ff9e99;
 }
-thead th:nth-child(1) {
-  width: 5rem;
+
+/* 테이블 레이아웃 지정 */
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+}
+thead th:nth-child(1),
+tr td:nth-child(1) {
+  width: 10%;
+}
+thead th:nth-child(2) {
+  width: 50%;
+}
+tr td:nth-child(2) {
+  width: 15%;
+}
+tr td:nth-child(3) {
+  width: 35%;
+}
+thead th:nth-child(3),
+tr td:nth-child(4) {
+  width: 15%;
+}
+thead th:nth-child(4),
+tr td:nth-child(5) {
+  width: 15%;
+}
+thead th:nth-child(5),
+tr td:nth-child(6) {
+  width: 10%;
 }
 .cart td {
   height: 7rem;
@@ -21,6 +47,23 @@ thead th:nth-child(1) {
 .cart img {
   width: 5rem;
 }
+
+/* 테이블 스크롤 설정 */
+.cart tbody {
+  display: block;
+  max-height: 35rem;
+  overflow-y: auto;
+}
+.cart tbody::-webkit-scrollbar {
+  width: 0.3rem;
+}
+.cart tbody::-webkit-scrollbar-thumb {
+  width: 0.3rem;
+  background-color: #ff9e99;
+  border-radius: 5px;
+}
+
+/* button */
 button {
   width: 5rem;
   height: 3rem;
@@ -46,7 +89,6 @@ dialog {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50rem;
-  padding: 0 1rem 1rem 0;
   border: 0;
   border-radius: 10px;
 }
@@ -75,5 +117,5 @@ dialog::backdrop {
   width: 100%;
   padding: 2rem;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow: auto;
 }

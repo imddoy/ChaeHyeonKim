@@ -284,15 +284,21 @@ let buyList = []; // buyList 빈 배열로 초기화
 // 모달 열기 버튼
 function goOpen() {
   buyList = []; // buyList 빈 배열로 초기화
-  addBuyCart();
-  renderBuyItems();
-  modal.showModal();
+  const hasCheckedItems = addBuyCart(); // 체크된 아이템 여부 확인
+  if (hasCheckedItems) {
+    renderBuyItems();
+    modal.showModal();
+  } else {
+    alert("선택된 상품이 없습니다.");
+  }
 }
 // 구매 목록에 아이템 추가
 function addBuyCart(item) {
+  let hasCheckedItems = false; // 체크된 아이템 여부
   checkboxes.forEach((checkbox) => {
     if (checkbox.checked) {
-      const tr = checkbox.closest("tr"); // 가장 가까운 tr 요소 찾기
+      hasCheckedItems = true;
+      const tr = checkbox.closest("tr"); // 체크된 tr
       const item = {
         id: tr.dataset.id,
         name: tr.dataset.name,
@@ -303,6 +309,7 @@ function addBuyCart(item) {
       buyList.push(item);
     }
   });
+  return hasCheckedItems;
 }
 //구매목록 렌더링
 function renderBuyItems() {

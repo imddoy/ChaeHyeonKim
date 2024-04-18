@@ -306,6 +306,7 @@ function addBuyCart(item) {
 }
 //구매목록 렌더링
 function renderBuyItems() {
+  let sumPrice = 0;
   const itemsContainer = document.querySelector(".buylist"); // 상품 리스트를 렌더링할 class 가져오기
   itemsContainer.innerHTML = ""; // 기존 상품 목록 비우기
 
@@ -331,6 +332,7 @@ function renderBuyItems() {
     priceP.textContent =
       item.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +
       "원"; // 천단위 표시
+    sumPrice += Number(item.price);
 
     // 요소 추가
     article.appendChild(img);
@@ -338,6 +340,13 @@ function renderBuyItems() {
     article.appendChild(priceP);
     itemsContainer.appendChild(article);
   });
+
+  //총 구매 가격
+  const sumP = document.querySelector(".buyPrice");
+  sumP.textContent =
+    "총 구매 금액 : " +
+    sumPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +
+    "원";
 }
 // 모달 닫기 버튼
 modal.addEventListener("click", (e) => {

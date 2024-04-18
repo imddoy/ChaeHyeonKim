@@ -119,3 +119,11 @@ dialog::backdrop {
   box-sizing: border-box;
   overflow: auto;
 }
+.buylist::-webkit-scrollbar {
+  height: 0.3rem;
+}
+.buylist::-webkit-scrollbar-thumb {
+  height: 0.3rem;
+  background-color: #ff9e99;
+  border-radius: 5px;
+}

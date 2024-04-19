@@ -170,10 +170,7 @@ function renderItems(filterCategory = "all") {
 
 //장바구니 목록 추가
 function addCart(item) {
-  let cartList = JSON.parse(localStorage.getItem("cartList")) || [];
-  if (!Array.isArray(cartList)) {
-    cartList = []; // cartList가 배열이 아닌 경우, 빈 배열로 초기화
-  }
+  let cartList = JSON.parse(localStorage.getItem("cartList")) || []; // cartList가 배열이 아닌 경우, 빈 배열로 초기화
   cartList.push(item); // 새 상품 추가
   localStorage.setItem("cartList", JSON.stringify(cartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
   alert(`${item.name}을(를) 장바구니에 담았습니다.`);

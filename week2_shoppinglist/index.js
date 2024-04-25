@@ -211,7 +211,7 @@ function renderCartItems() {
     const imgtd = document.createElement("td");
     const img = document.createElement("img");
     img.src = item.image;
-    img.alt = "상품 이미지";
+    img.alt = item.name;
     img.className = "item-image";
     imgtd.appendChild(img);
 

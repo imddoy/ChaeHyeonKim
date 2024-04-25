@@ -171,8 +171,8 @@ function renderItems(filterCategory = "all") {
 //장바구니 목록 추가
 function addCart(item) {
   let cartList = JSON.parse(localStorage.getItem("cartList")) || []; // cartList가 배열이 아닌 경우, 빈 배열로 초기화
-  cartList.push(item); // 새 상품 추가
-  localStorage.setItem("cartList", JSON.stringify(cartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
+  const newCartList = [...cartList, item]; // 새 상품 추가
+  localStorage.setItem("cartList", JSON.stringify(newCartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
   alert(`${item.name}을(를) 장바구니에 담았습니다.`);
   const answer = confirm("장바구니로 이동하시겠습니까?");
   if (answer == true) {
@@ -309,6 +309,8 @@ function goOpen() {
 // 구매 목록에 아이템 추가
 function addBuyCart(item) {
   let hasCheckedItems = false; // 체크된 아이템 여부
+  const newBuyList = [...buyList]; // 기존 buyList를 복사하여 새로운 배열 생성
+
   checkboxes.forEach((checkbox) => {
     if (checkbox.checked) {
       hasCheckedItems = true;
@@ -320,9 +322,11 @@ function addBuyCart(item) {
         price: tr.dataset.price,
         category: tr.dataset.category,
       };
-      buyList.push(item);
+      newBuyList.push(item); // 새로운 배열에 아이템 추가
     }
   });
+
+  buyList = newBuyList; // 새로운 배열을 buyList에 할당
   return hasCheckedItems;
 }
 //구매목록 렌더링
@@ -377,8 +381,9 @@ modal.addEventListener("click", (e) => {
 function goConfirm() {
   let cartList = JSON.parse(localStorage.getItem("cartList") || "[]");
   const buyIds = buyList.map((buy) => Number(buy.id)); // 구매 목록의 id 배열 생성
-  cartList = cartList.filter((cart) => !buyIds.includes(cart.id)); // 구매 목록에 없는 상품들만 남김
-  localStorage.setItem("cartList", JSON.stringify(cartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
+  // 새로운 배열을 반환하는 filter를 사용하여 cartList의 불변성을 유지
+  const newCartList = cartList.filter((cart) => !buyIds.includes(cart.id)); // 구매 목록에 없는 상품들만 남김
+  localStorage.setItem("cartList", JSON.stringify(newCartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
   alert("구매가 성공적으로 완료되었습니다.");
-  location.href = location.href; // 페이지 새로고침
+  location.reload(); // 페이지 새로고침
 }

@@ -174,7 +174,7 @@ function addCart(item) {
   cartList.push(item); // 새 상품 추가
   localStorage.setItem("cartList", JSON.stringify(cartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
   alert(`${item.name}을(를) 장바구니에 담았습니다.`);
-  var answer = confirm("장바구니로 이동하시겠습니까?");
+  const answer = confirm("장바구니로 이동하시겠습니까?");
   if (answer == true) {
     location.href = "cart.html";
   }

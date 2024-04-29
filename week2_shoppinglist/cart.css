@@ -1,0 +1,129 @@
+.cart {
+  width: 70vw;
+  margin: 7rem auto 3rem;
+  text-align: center;
+  border-collapse: collapse;
+}
+.cart thead {
+  height: 3rem;
+  background-color: #ff9e99;
+}
+
+/* 테이블 레이아웃 지정 */
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+}
+thead th:nth-child(1),
+tr td:nth-child(1) {
+  width: 10%;
+}
+thead th:nth-child(2) {
+  width: 50%;
+}
+tr td:nth-child(2) {
+  width: 15%;
+}
+tr td:nth-child(3) {
+  width: 35%;
+}
+thead th:nth-child(3),
+tr td:nth-child(4) {
+  width: 15%;
+}
+thead th:nth-child(4),
+tr td:nth-child(5) {
+  width: 15%;
+}
+thead th:nth-child(5),
+tr td:nth-child(6) {
+  width: 10%;
+}
+.cart td {
+  height: 7rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+.cart img {
+  width: 5rem;
+}
+
+/* 테이블 스크롤 설정 */
+.cart tbody {
+  display: block;
+  max-height: 35rem;
+  overflow-y: auto;
+}
+.cart tbody::-webkit-scrollbar {
+  width: 0.3rem;
+}
+.cart tbody::-webkit-scrollbar-thumb {
+  width: 0.3rem;
+  background-color: #ff9e99;
+  border-radius: 5px;
+}
+
+/* button */
+button {
+  width: 5rem;
+  height: 3rem;
+  background-color: #ffc0cb;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.buttonContainer button:last-child {
+  background-color: #e0e0e0;
+}
+
+/* modal */
+dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50rem;
+  border: 0;
+  border-radius: 10px;
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+.dialogContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.close {
+  width: 100%;
+  border-bottom: 1px solid #aaa;
+}
+.close button {
+  background: none;
+  font-weight: 800;
+  float: right;
+}
+.buylist {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow: auto;
+}
+.buylist::-webkit-scrollbar {
+  height: 0.3rem;
+}
+.buylist::-webkit-scrollbar-thumb {
+  height: 0.3rem;
+  background-color: #ff9e99;
+  border-radius: 5px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="잔망루피 장바구니" />
+    <meta
+      property="og:description"
+      content="새싹웹팟 2차 세미나 과제 - 쇼핑리스트 만들기"
+    />
+    <link rel="icon" type="image/png" href="images/favicon.jpg" />
+    <meta
+      property="og:image"
+      content="https://sopt-week1-shoppinglist.vercel.app/images/logo.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="cart.css" />
+    <title>잔망루피 장바구니</title>
+  </head>
+  <body>
+    <!-- header -->
+    <shop-header></shop-header>
+    <!-- 장바구니 -->
+    <table class="cart">
+      <thead>
+        <tr>
+          <th>
+            <input type="checkbox" name="selectall" class="allBtn" />
+          </th>
+          <th>상품정보</th>
+          <th>상품 금액</th>
+          <th>카테고리</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody class="cartlist"></tbody>
+    </table>
+    <!-- 버튼 -->
+    <menu class="buttonContainer">
+      <button type="button" class="openBtn">구매하기</button>
+      <button type="button" class="homeBtn">홈으로</button>
+    </menu>
+    <!-- modal -->
+    <dialog>
+      <div class="dialogContainer">
+        <form class="close" method="dialog">
+          <button>X</button>
+        </form>
+        <h3>다음 상품을 구매하시겠습니까?</h3>
+        <section class="buylist"></section>
+        <section class="buyPrice"></section>
+        <form method="dialog">
+          <button class="confirmBtn">구매하기</button>
+        </form>
+      </div>
+    </dialog>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

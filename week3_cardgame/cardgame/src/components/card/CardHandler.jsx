@@ -11,6 +11,7 @@ export default function CardHandler({ level, updateScore, shuffle }) {
 
     // 랜덤 카드 뽑기
     const getRandomElement = (arr) => {
+        console.log('getRandomElement');
         let result = new Set();
         while (result.size < level) {
             const randomElement = arr[Math.floor(Math.random() * arr.length)];
@@ -34,6 +35,7 @@ export default function CardHandler({ level, updateScore, shuffle }) {
     };
 
     useEffect(() => {
+        console.log('useEffect');
         setCards(initialCards());
         setSelectedCard(null);
         setMatchCards([]);
@@ -41,6 +43,7 @@ export default function CardHandler({ level, updateScore, shuffle }) {
     }, [level, shuffle]);
 
     function chooseCard(e, id) {
+        e.stopPropagation();
         // 매칭된 카드와 자기 자신은 선택 불가
         if (!matchCards.includes(id) && id !== selectedCard) {
             setOpenCards((prev) => [...prev, id]); // 카드 오픈
@@ -53,7 +56,7 @@ export default function CardHandler({ level, updateScore, shuffle }) {
                     // 1초 지연
                     setOpenCards(matchCards); // 선택 카드 다시 닫기
                     setSelectedCard(null); // 선택한 카드 비우기
-                }, 1000);
+                }, 500);
             } else {
                 //카드가 매칭되었을 때
                 setMatchCards((prev) => {

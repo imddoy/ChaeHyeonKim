@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ModalWrapper = styled.div`
+export const ModalContainer = styled.div`
     position: fixed;
     top: 0;
     left: 0;
@@ -12,20 +12,20 @@ export const ModalWrapper = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const DialogContainer = styled.div`
+export const ModalWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 40rem;
+    width: 50rem;
     height: 10rem;
     background-color: ${(props) => props.theme.colors.white};
     border-radius: 10px;
-    font-size: 2rem;
+    font-size: 3rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-export const ConfirmButton = styled.button`
+export const ConfirmBtn = styled.button`
     padding: 10px 20px;
     background-color: ${(props) => props.theme.colors.pink};
     color: white;

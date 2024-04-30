@@ -8,6 +8,7 @@ export default function GamePage() {
     const [score, setScore] = useState(0);
     const [level, setLevel] = useState(5);
     const [modalOpen, setModalOpen] = useState(false);
+    const [shuffle, setShuffle] = useState(false);
 
     // 점수 업데이트
     const updateScore = (newScore) => {
@@ -21,6 +22,7 @@ export default function GamePage() {
     const resetGame = () => {
         setLevel(5);
         setScore(0);
+        setShuffle(!shuffle);
     };
 
     const closeModal = () => {
@@ -33,7 +35,7 @@ export default function GamePage() {
         setScore(0);
     }, [level]);
 
-    // 난이도 변경 시 점수 리셋
+    // 점수 달성 시 모달 오픈
     useEffect(() => {
         if (score === level) {
             setModalOpen(true);
@@ -44,7 +46,7 @@ export default function GamePage() {
         <>
             <Header score={score} level={level} resetGame={resetGame} />
             <LevelHandler updateLevel={updateLevel} />
-            <CardHandler level={level} updateScore={updateScore} />
+            <CardHandler level={level} updateScore={updateScore} shuffle={shuffle} />
             <SuccessModal isOpen={modalOpen} onClose={closeModal} />
         </>
     );

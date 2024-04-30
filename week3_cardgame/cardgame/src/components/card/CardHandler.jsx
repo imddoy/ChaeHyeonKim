@@ -3,7 +3,7 @@ import Card from './Card';
 import CARDLIST from './CardData';
 import styled from 'styled-components';
 
-export default function CardHandler({ level, updateScore }) {
+export default function CardHandler({ level, updateScore, shuffle }) {
     const [cards, setCards] = useState([]);
     const [selectedCard, setSelectedCard] = useState(null); // 전에 선택한 카드
     const [matchCards, setMatchCards] = useState([]); // 매칭된 카드들
@@ -38,7 +38,7 @@ export default function CardHandler({ level, updateScore }) {
         setSelectedCard(null);
         setMatchCards([]);
         setOpenCards([]);
-    }, [level]);
+    }, [level, shuffle]);
 
     function chooseCard(e, id) {
         // 매칭된 카드와 자기 자신은 선택 불가

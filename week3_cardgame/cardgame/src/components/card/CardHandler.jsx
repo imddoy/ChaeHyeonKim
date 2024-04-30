@@ -3,7 +3,7 @@ import Card from './Card';
 import CARDLIST from './CardData';
 import styled from 'styled-components';
 
-export default function CardHandler() {
+export default function CardHandler({ updateScore }) {
     // 중복 ID 문제 해결을 위해 카드에 고유한 ID 부여
     const initialCards = [
         ...CARDLIST.map((card) => ({ ...card, id: card.id })),
@@ -38,6 +38,7 @@ export default function CardHandler() {
                     return newMatchCards;
                 });
                 setSelectedCard(null); //선택한 카드 비우기
+                updateScore((currentScore) => currentScore + 1);
             }
         }
     }

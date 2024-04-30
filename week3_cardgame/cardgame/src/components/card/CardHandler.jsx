@@ -3,18 +3,42 @@ import Card from './Card';
 import CARDLIST from './CardData';
 import styled from 'styled-components';
 
-export default function CardHandler({ updateScore }) {
-    // 중복 ID 문제 해결을 위해 카드에 고유한 ID 부여
-    const initialCards = [
-        ...CARDLIST.map((card) => ({ ...card, id: card.id })),
-        ...CARDLIST.map((card) => ({ ...card, id: card.id + CARDLIST.length })),
-    ];
-    // 카드 섞기
-    const [cards, setCards] = useState(initialCards.sort(() => 0.5 - Math.random()));
+export default function CardHandler({ level, updateScore }) {
+    const [cards, setCards] = useState([]);
     const [selectedCard, setSelectedCard] = useState(null); // 전에 선택한 카드
     const [matchCards, setMatchCards] = useState([]); // 매칭된 카드들
     const [openCards, setOpenCards] = useState([]); // 오픈된 카드들 (선택한 카드 + 매칭된 카드들)
-    const LEVEL = 9; // 카드 쌍의 수
+
+    // 랜덤 카드 뽑기
+    const getRandomElement = (arr) => {
+        let result = new Set();
+        while (result.size < level) {
+            const randomElement = arr[Math.floor(Math.random() * arr.length)];
+            result.add(randomElement);
+        }
+        return Array.from(result);
+    };
+
+    // 카드 쌍 만들기
+    const initialCards = () => {
+        const selectedCards = getRandomElement(CARDLIST);
+        const cardPairs = selectedCards.reduce(
+            (acc, card) => [
+                ...acc,
+                { ...card, id: card.id + 1000 }, // ID 충돌 방지
+                { ...card, id: card.id + 2000 }, // ID 충돌 방지
+            ],
+            [],
+        );
+        return cardPairs.sort(() => 0.5 - Math.random());
+    };
+
+    useEffect(() => {
+        setCards(initialCards());
+        setSelectedCard(null);
+        setMatchCards([]);
+        setOpenCards([]);
+    }, [level]);
 
     function chooseCard(e, id) {
         // 매칭된 카드와 자기 자신은 선택 불가
@@ -23,7 +47,7 @@ export default function CardHandler({ updateScore }) {
             if (selectedCard == null) {
                 // 선택한 카드가 없을 때
                 setSelectedCard(id); // 선택한 카드에 추가
-            } else if (selectedCard % LEVEL !== id % LEVEL) {
+            } else if (selectedCard % 1000 !== id % 1000) {
                 // 카드가 매칭되지 않을 때
                 setTimeout(() => {
                     // 1초 지연

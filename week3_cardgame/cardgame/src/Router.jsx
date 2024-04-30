@@ -20,4 +20,3 @@ export default function Router() {
 const GlobalWrapper = styled.main`
     margin: 0 auto;
 `;
-  

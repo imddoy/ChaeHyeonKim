@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import pattern from './../../assets/images/pattern.jpg';
 
 export const CardWrapper = styled.section`
     display: inline-grid;
@@ -11,7 +12,7 @@ export const CardWrapper = styled.section`
         padding: 1rem;
         backface-visibility: hidden; // 뒤집으면 안보이도록
         cursor: pointer;
-        border: 2px solid ${(props) => props.theme.colors.pink};
+        border: 10px outset ${(props) => props.theme.colors.pink};
         border-radius: 15px;
     }
 
@@ -30,6 +31,8 @@ export const FrontCard = styled.article`
     background-position: center;
 `;
 export const BackCard = styled.article`
-    background-color: ${(props) => props.theme.colors.grey};
+    background-image: url(${pattern});
+    background-size: cover;
     transform: rotateY(180deg);
+    border: none;
 `;

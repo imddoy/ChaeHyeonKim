@@ -43,15 +43,22 @@ export default function CardHandler() {
     }
 
     return (
-        <>
+        <CardContainer>
             {cards.map((card, index) => (
                 <CardWrapper key={index} onClick={(e) => chooseCard(e, card.id)}>
                     <Card img={card.img} open={openCards.includes(card.id)} />
                 </CardWrapper>
             ))}
-        </>
+        </CardContainer>
     );
 }
+
+const CardContainer = styled.section`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+`;
 
 const CardWrapper = styled.span`
     display: inline-block;

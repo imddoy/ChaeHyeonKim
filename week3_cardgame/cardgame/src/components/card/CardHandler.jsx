@@ -35,7 +35,6 @@ export default function CardHandler({ level, updateScore, shuffle }) {
     };
 
     useEffect(() => {
-        console.log('useEffect');
         setCards(initialCards());
         setSelectedCard(null);
         setMatchCards([]);

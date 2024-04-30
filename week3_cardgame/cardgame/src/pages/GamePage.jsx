@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CardHandler from '../components/card/CardHandler';
 import Header from '../components/header/Header';
-import LevelHandler from '../components/levelcontroller/LevelHandler';
+import LevelHandler from '../components/level/LevelHandler';
 
 export default function GamePage() {
     const [score, setScore] = useState(0);

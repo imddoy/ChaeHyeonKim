@@ -2,7 +2,7 @@ import React from 'react';
 import LevelBtn from './LevelBtn';
 import styled from 'styled-components';
 
-export default function LevelController({ updateLevel }) {
+export default function LevelHandler({ updateLevel }) {
     const levelSettings = [
         { label: 'Easy', level: 5 },
         { label: 'Normal', level: 7 },

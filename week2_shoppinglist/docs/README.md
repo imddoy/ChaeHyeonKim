@@ -1,6 +1,6 @@
 ## 나만의 쇼핑리스트 만들기
 
-🔗 [쇼핑리스트 바로가기]()
+🔗 [쇼핑리스트 바로가기](https://sopt-week2-shoppinglist.vercel.app/)
 
 ### 🧩 기본 과제
 

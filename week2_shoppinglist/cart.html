@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="cart.css" />
     <title>잔망루피 장바구니</title>
   </head>
-  <body onload="renderCartItems()">
+  <body>
     <!-- header -->
     <shop-header></shop-header>
     <!-- 장바구니 -->
@@ -25,7 +25,7 @@
       <thead>
         <tr>
           <th>
-            <input type="checkbox" name="selectall" onclick="selectAll(this)" />
+            <input type="checkbox" name="selectall" class="allBtn" />
           </th>
           <th>상품정보</th>
           <th>상품 금액</th>
@@ -37,8 +37,8 @@
     </table>
     <!-- 버튼 -->
     <menu class="buttonContainer">
-      <button type="button" onclick="goOpen()">구매하기</button>
-      <button type="button" onclick="goHome()">홈으로</button>
+      <button type="button" class="openBtn">구매하기</button>
+      <button type="button" class="homeBtn">홈으로</button>
     </menu>
     <!-- modal -->
     <dialog>
@@ -50,10 +50,10 @@
         <section class="buylist"></section>
         <section class="buyPrice"></section>
         <form method="dialog">
-          <button onclick="goConfirm()">구매하기</button>
+          <button class="confirmBtn">구매하기</button>
         </form>
       </div>
     </dialog>
+    <script type="module" src="index.js"></script>
   </body>
-  <script src="index.js"></script>
 </html>

@@ -1,3 +1,37 @@
+import { SHOPPING_LIST } from "./item.js";
+
+/* onclick 이벤트 */
+export const qs = (selector, scope = document) => {
+  return scope.querySelector(selector);
+};
+document.addEventListener("DOMContentLoaded", () => {
+  // cart 이벤트 리스너 추가
+  qs(".allBtn") &&
+    qs(".allBtn").addEventListener("click", () => selectAll(qs(".allBtn")));
+  qs(".openBtn") && qs(".openBtn").addEventListener("click", goOpen);
+  qs(".confirmBtn") && qs(".confirmBtn").addEventListener("click", goConfirm);
+  qs(".allRender") &&
+    qs(".allRender").addEventListener("click", () => renderItems("all"));
+  qs(".stationeryRender") &&
+    qs(".stationeryRender").addEventListener("click", () =>
+      renderItems("stationery")
+    );
+  qs(".fashionRender") &&
+    qs(".fashionRender").addEventListener("click", () =>
+      renderItems("fashion")
+    );
+  qs(".digitalRender") &&
+    qs(".digitalRender").addEventListener("click", () =>
+      renderItems("digital")
+    );
+  //버튼 태그도 구현 가능하도록
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("homeBtn")) {
+      goHome();
+    }
+  });
+});
+
 /* header */
 
 // 웹 컴포넌트로 header 삽입
@@ -9,13 +43,13 @@ class HeaderComponent extends HTMLElement {
         src="./images/logo.png"
         alt="쇼핑몰 로고"
         width="36rem"
-        onclick="goHome()"
+        class ="homeBtn"
       />
       <h1 lang="en">SHOPPING LIST</h1>
-      <img src="./images/menu.svg" alt="햄버거" class="menuBtn" onclick="openNav()" />
+      <img src="./images/menu.svg" alt="햄버거" class="openNavBtn"/>
     </header>
     <nav class="sidebar">
-      <div class="menuBtn" onclick="closeNav()">x
+      <div class="menuBtn closeNavBtn">x
       </div>
       <ul>
         <li>관심 상품 목록</li>
@@ -24,6 +58,8 @@ class HeaderComponent extends HTMLElement {
       </ul>
     </nav>
       `;
+    this.querySelector(".openNavBtn").addEventListener("click", openNav);
+    this.querySelector(".closeNavBtn").addEventListener("click", closeNav);
   }
 }
 customElements.define("shop-header", HeaderComponent); // html 태그 정의 및 구현
@@ -44,82 +80,6 @@ function closeNav() {
 
 /* index */
 
-// 상품 리스트
-const SHOPPING_LIST = [
-  {
-    id: 1,
-    category: "stationery",
-    image: "./images/note.jpg",
-    name: "잔망루피 페이스 스프링 노트",
-    price: 4000,
-    liked: false,
-  },
-  {
-    id: 2,
-    category: "stationery",
-    image: "./images/bag.jpg",
-    name: "잔망루피 쇼핑백 (2종/택1)",
-    price: 1500,
-    liked: false,
-  },
-  {
-    id: 3,
-    category: "stationery",
-    image: "./images/sticker.jpg",
-    name: "잔망루피 스티커",
-    price: 1500,
-    liked: false,
-  },
-  {
-    id: 4,
-    category: "fashion",
-    image: "./images/doll.jpg",
-    name: "잔망루피 파자마 봉제 인형",
-    price: 29000,
-    liked: false,
-  },
-  {
-    id: 5,
-    category: "fashion",
-    image: "./images/passport.jpg",
-    name: "잔망루피 여권 케이스",
-    price: 5900,
-    liked: false,
-  },
-  {
-    id: 6,
-    category: "fashion",
-    image: "./images/flower.jpg",
-    name: "잔망루피 꽃다발 봉제 인형",
-    price: 34000,
-    liked: false,
-  },
-  {
-    id: 7,
-    category: "digital",
-    image: "./images/mouse.jpg",
-    name: "잔망루피 마우스패드",
-    price: 4000,
-    liked: false,
-  },
-  {
-    id: 8,
-    category: "digital",
-    image: "./images/usb.jpg",
-    name: "로이체 잔망루피 5in1 멀티 USB 허브",
-    price: 36900,
-    liked: false,
-  },
-  {
-    id: 9,
-    category: "digital",
-    image: "./images/mic.jpg",
-    name: "로이체 잔망루피 블루투스 마이크 스피커",
-    price: 39900,
-    liked: false,
-  },
-];
-
 // 상품 리스트 렌더링
 function renderItems(filterCategory = "all") {
   const filteredItems = SHOPPING_LIST.filter((item) => {
@@ -127,7 +87,7 @@ function renderItems(filterCategory = "all") {
   });
 
   const itemsContainer = document.querySelector(".items"); // 상품 리스트를 렌더링할 class 가져오기
-  itemsContainer.innerHTML = ""; // 기존 상품 목록 비우기
+  itemsContainer.innerHTML = ``; // 기존 상품 목록 비우기
 
   // 상품 목록 추가
   filteredItems.forEach((item) => {
@@ -167,17 +127,17 @@ function renderItems(filterCategory = "all") {
     itemsContainer.appendChild(article);
   });
 }
+document.addEventListener("DOMContentLoaded", () => {
+  renderItems(); // 문서 로드 완료 후 함수 호출
+});
 
 //장바구니 목록 추가
 function addCart(item) {
-  let cartList = JSON.parse(localStorage.getItem("cartList")) || [];
-  if (!Array.isArray(cartList)) {
-    cartList = []; // cartList가 배열이 아닌 경우, 빈 배열로 초기화
-  }
-  cartList.push(item); // 새 상품 추가
-  localStorage.setItem("cartList", JSON.stringify(cartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
+  let cartList = JSON.parse(localStorage.getItem("cartList")) || []; // cartList가 배열이 아닌 경우, 빈 배열로 초기화
+  const newCartList = [...cartList, item]; // 새 상품 추가
+  localStorage.setItem("cartList", JSON.stringify(newCartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
   alert(`${item.name}을(를) 장바구니에 담았습니다.`);
-  var answer = confirm("장바구니로 이동하시겠습니까?");
+  const answer = confirm("장바구니로 이동하시겠습니까?");
   if (answer == true) {
     location.href = "cart.html";
   }
@@ -188,7 +148,7 @@ function addCart(item) {
 // 장바구니 목록 렌더링
 function renderCartItems() {
   const cartItemsContainer = document.querySelector(".cartlist"); // 상품 리스트를 렌더링할 class 가져오기
-  cartItemsContainer.innerHTML = ""; // 기존 상품 목록 비우기
+  cartItemsContainer.innerHTML = ``; // 기존 상품 목록 비우기
 
   let cartList = JSON.parse(localStorage.getItem("cartList") || "[]");
   cartList.forEach((item) => {
@@ -205,8 +165,8 @@ function renderCartItems() {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.name = "item";
-    checkbox.onclick = function () {
-      onclick = checkSelectAll(this);
+    checkbox.onclick = function (event) {
+      onclick = checkSelectAll(event.target);
     };
     checktd.appendChild(checkbox);
 
@@ -214,7 +174,7 @@ function renderCartItems() {
     const imgtd = document.createElement("td");
     const img = document.createElement("img");
     img.src = item.image;
-    img.alt = "상품 이미지";
+    img.alt = item.name;
     img.className = "item-image";
     imgtd.appendChild(img);
 
@@ -265,6 +225,12 @@ function renderCartItems() {
     cartItemsContainer.appendChild(tr);
   });
 }
+document.addEventListener("DOMContentLoaded", () => {
+  renderCartItems(); // 문서 로드 완료 후 함수 호출
+  qs(".homeBtn").addEventListener("click", () => {
+    location.href = "index.html";
+  });
+});
 
 // 장바구니 삭제
 function removeCartItem(itemId) {
@@ -279,7 +245,7 @@ const checkboxes = document.getElementsByName("item");
 
 // 전체 선택 상태 업데이트 (아이템 체크 해제하면 전체 선택 취소)
 function checkSelectAll(checkbox) {
-  const selectall = document.querySelector('input[name="selectall"]');
+  const selectall = document.querySelector(".allBtn");
 
   if (checkbox.checked === false) {
     selectall.checked = false;
@@ -287,9 +253,9 @@ function checkSelectAll(checkbox) {
 }
 
 // 전체 선택 + 해제
-function selectAll(selectAll) {
+function selectAll(allBtn) {
   checkboxes.forEach((checkbox) => {
-    checkbox.checked = selectAll.checked;
+    checkbox.checked = allBtn.checked;
   });
 }
 
@@ -312,6 +278,8 @@ function goOpen() {
 // 구매 목록에 아이템 추가
 function addBuyCart(item) {
   let hasCheckedItems = false; // 체크된 아이템 여부
+  const newBuyList = [...buyList]; // 기존 buyList를 복사하여 새로운 배열 생성
+
   checkboxes.forEach((checkbox) => {
     if (checkbox.checked) {
       hasCheckedItems = true;
@@ -323,16 +291,18 @@ function addBuyCart(item) {
         price: tr.dataset.price,
         category: tr.dataset.category,
       };
-      buyList.push(item);
+      newBuyList.push(item); // 새로운 배열에 아이템 추가
     }
   });
+
+  buyList = newBuyList; // 새로운 배열을 buyList에 할당
   return hasCheckedItems;
 }
 //구매목록 렌더링
 function renderBuyItems() {
   let sumPrice = 0;
   const itemsContainer = document.querySelector(".buylist"); // 상품 리스트를 렌더링할 class 가져오기
-  itemsContainer.innerHTML = ""; // 기존 상품 목록 비우기
+  itemsContainer.innerHTML = ``; // 기존 상품 목록 비우기
 
   // 상품 목록 추가
   buyList.forEach((item) => {
@@ -342,7 +312,7 @@ function renderBuyItems() {
     // 이미지
     const img = document.createElement("img");
     img.src = item.image;
-    img.alt = "상품 이미지";
+    img.alt = item.name;
     img.className = "item-image";
 
     // 상품명
@@ -380,8 +350,9 @@ modal.addEventListener("click", (e) => {
 function goConfirm() {
   let cartList = JSON.parse(localStorage.getItem("cartList") || "[]");
   const buyIds = buyList.map((buy) => Number(buy.id)); // 구매 목록의 id 배열 생성
-  cartList = cartList.filter((cart) => !buyIds.includes(cart.id)); // 구매 목록에 없는 상품들만 남김
-  localStorage.setItem("cartList", JSON.stringify(cartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
+  // 새로운 배열을 반환하는 filter를 사용하여 cartList의 불변성을 유지
+  const newCartList = cartList.filter((cart) => !buyIds.includes(cart.id)); // 구매 목록에 없는 상품들만 남김
+  localStorage.setItem("cartList", JSON.stringify(newCartList)); // 변경된 장바구니 목록을 로컬 스토리지에 저장
   alert("구매가 성공적으로 완료되었습니다.");
-  location.href = location.href; // 페이지 새로고침
+  location.reload(); // 페이지 새로고침
 }

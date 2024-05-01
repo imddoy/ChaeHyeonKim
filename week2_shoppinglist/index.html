@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="style.css" />
     <title>잔망루피 쇼핑리스트</title>
   </head>
-  <body onload="renderItems()">
+  <body>
     <!-- header -->
     <shop-header></shop-header>
     <!-- nav -->
@@ -24,10 +24,10 @@
       <div class="navContainer">
         <p lang="en">Categories</p>
         <ul>
-          <li onclick="renderItems('all')">전체</li>
-          <li onclick="renderItems('stationery')">디자인 문구</li>
-          <li onclick="renderItems('fashion')">패션 잡화</li>
-          <li onclick="renderItems('digital')">디지털</li>
+          <li class="allRender">전체</li>
+          <li class="stationeryRender">디자인 문구</li>
+          <li class="fashionRender">패션 잡화</li>
+          <li class="digitalRender">디지털</li>
         </ul>
       </div>
     </nav>
@@ -56,6 +56,6 @@
     </main>
     <!-- 푸터 -->
     <footer>🌱NOW SOPT 새싹웹팟 2차 세미나 과제 - 김채현🌱</footer>
+    <script type="module" src="index.js"></script>
   </body>
-  <script src="index.js"></script>
 </html>

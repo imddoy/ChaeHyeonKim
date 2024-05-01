@@ -2,7 +2,7 @@ import React from 'react';
 import LevelBtn from './LevelBtn';
 import styled from 'styled-components';
 
-export default function LevelHandler({ updateLevel }) {
+export default function LevelHandler({ level, updateLevel }) {
     const levelSettings = [
         { label: 'Easy', level: 5 },
         { label: 'Normal', level: 7 },
@@ -11,7 +11,10 @@ export default function LevelHandler({ updateLevel }) {
     return (
         <BtnWrapper>
             {levelSettings.map((setting) => (
-                <LevelBtn key={setting.label} onClick={() => updateLevel(setting.level)}>
+                <LevelBtn
+                    key={setting.label}
+                    isActive={level === setting.level}
+                    onClick={() => updateLevel(setting.level)}>
                     {setting.label}
                 </LevelBtn>
             ))}

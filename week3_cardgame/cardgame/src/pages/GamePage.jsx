@@ -45,7 +45,7 @@ export default function GamePage() {
     return (
         <>
             <Header score={score} level={level} resetGame={resetGame} />
-            <LevelHandler updateLevel={updateLevel} />
+            <LevelHandler level={level} updateLevel={updateLevel} />
             <CardHandler level={level} updateScore={updateScore} shuffle={shuffle} />
             <SuccessModal isOpen={modalOpen} onClose={closeModal} />
         </>

@@ -1,6 +1,10 @@
 import React from 'react';
 import * as B from './LevelBtnStyle.jsx';
 
-export default function LevelBtn({ children, onClick }) {
-    return <B.Button onClick={onClick}>{children}</B.Button>;
+export default function LevelBtn({ children, isActive, onClick }) {
+    return (
+        <B.Button isActive={isActive} onClick={onClick}>
+            {children}
+        </B.Button>
+    );
 }

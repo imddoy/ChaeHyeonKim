@@ -29,6 +29,7 @@ export const Reset = styled.button`
     color: ${(props) => props.theme.colors.pink};
     cursor: pointer;
     font-size: 2rem;
+    z-index: 1;
     &:focus {
         outline: none;
     }
